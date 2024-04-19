@@ -18,20 +18,16 @@ public class GetallenRadenLauncher {
     private static final int COUNT_NUMBER = 3;
 
     public static void main(String[] args) {
-        printGetallenRaden();
+        printGetallenRadenWithRecursion(1);
     }
 
     /**
      * Prints the game "Getallen Raden" to the console.
-     *
-     * @param None
-     * @return None
      */
     private static void printGetallenRaden() {
         int counter = 1;
         while (true) {
             int[] randomNumbers = GenerateRandomNumbers.generateRandomNumbers(COUNT_NUMBER, MIN_NUMBER, MAX_NUMBER);
-
             System.out.print("Geef 3 verschillende getallen tussen 1 en 10, gescheiden door spaties: ");
             Scanner sc = new Scanner(System.in);
             String input = sc.nextLine();
@@ -53,8 +49,6 @@ public class GetallenRadenLauncher {
                 break;
             } else {
                 counter++;
-                // recursive call
-                // printGetallenRaden();
             }
         }
 
@@ -126,6 +120,43 @@ public class GetallenRadenLauncher {
             }
         }
         return inputNumbers;
+    }
+
+    /**
+     * Prints the game "Getallen Raden" to the console using recursion.
+     *
+     * @param  counter  the counter for the number of times the game has been played
+     * @return          void
+     */
+    private static void printGetallenRadenWithRecursion(int counter) {
+            int[] randomNumbers = GenerateRandomNumbers.generateRandomNumbers(COUNT_NUMBER, MIN_NUMBER, MAX_NUMBER);
+            printArray(randomNumbers);
+            System.out.print("Geef 3 verschillende getallen tussen 1 en 10, gescheiden door spaties: ");
+            Scanner sc = new Scanner(System.in);
+            String input = sc.nextLine();
+            int[] inputNumbers = stringToArray(input);
+            if (inputNumbers.length != COUNT_NUMBER) {
+                System.out.println("Foutieve invoer, probeer opnieuw");
+                printGetallenRadenWithRecursion(counter);
+            }
+            int correctCounter = countCheckInputNumbers(randomNumbers, inputNumbers);
+            System.out.printf("Aantal correcte getallen = %d %n ", correctCounter);
+
+            if (correctCounter == COUNT_NUMBER) {
+                System.out.println("Gefeliciteerd, u heeft gewonnen");
+                System.out.printf("U heeft %d keer geraden. %n", counter);
+                System.out.print("De te raden getallen waren: ");
+                Arrays.sort(randomNumbers);
+                printArray(inputNumbers);
+                sc.close();
+                return ;
+            } else {
+              counter++;
+                 //recursive call
+                printGetallenRadenWithRecursion(counter);
+            }
+
+
     }
 
 }

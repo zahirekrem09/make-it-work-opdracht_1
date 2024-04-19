@@ -100,6 +100,7 @@ public class CheckScanner {
         while (userAnswer <= 0) {
             if (sc.hasNextDouble()) {
                 userAnswer = sc.nextDouble();
+                break;
             } else {
                 System.out.println("Vul een geldig input in alstublieft.");
                 sc.nextLine();
