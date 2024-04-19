@@ -36,19 +36,19 @@ public class TentamencijfersLauncher {
         double[] cijfers = new double[aantalCijfers];
         int totaal = 0;
         int voldoendeAantal = 0;
-        for (int teller = 0; teller < cijfers.length; teller++) {
-            System.out.printf("Cijfer student %d: ", teller + 1);
+        for (int i = 0; i < cijfers.length; i++) {
+            System.out.printf("Cijfer student %d: ", i + 1);
 
-            cijfers[teller] = CheckScanner.getValidDouble(scanner);
-            if (cijfers[teller] > MAX_CIJFERS) {
+            cijfers[i] = CheckScanner.getValidDouble(scanner);
+            if (cijfers[i] > MAX_CIJFERS) {
                 System.out.println("Cijfer moet langer zijn dan 10!");
-                System.out.printf("Cijfer student %d: ", teller + 1);
-                cijfers[teller] = CheckScanner.getValidDouble(scanner);
+                System.out.printf("Cijfer student %d: ", i + 1);
+                cijfers[i] = CheckScanner.getValidDouble(scanner);
             }
-            if (cijfers[teller] >= AANTAL_GETALLEN_PER_REGEL) {
+            if (cijfers[i] >= AANTAL_GETALLEN_PER_REGEL) {
                 voldoendeAantal++;
             }
-            totaal += cijfers[teller];
+            totaal += cijfers[i];
         }
 
 //        double max = cijfers[0];
@@ -61,8 +61,8 @@ public class TentamencijfersLauncher {
         double minCijfer = Arrays.stream(cijfers).min().getAsDouble();
         System.out.printf("Aantal cijfers : %d%n", aantalCijfers);
         System.out.printf("Gemiddelde cijfer: %.2f%n", (double) totaal / aantalCijfers);
-        System.out.printf("Hoogste cijfer : %.2f%n", maxCijfer);
-        System.out.printf("Laagste cijfer : %.2f%n", minCijfer);
+        System.out.printf("Hoogste cijfer : %.1f%n", maxCijfer);
+        System.out.printf("Laagste cijfer : %.1f%n", minCijfer);
         System.out.printf("Aantal voldoendes: %d%n", voldoendeAantal );
 
     }

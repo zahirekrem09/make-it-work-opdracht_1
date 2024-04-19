@@ -93,13 +93,13 @@ public class CheckScanner {
 
     }
 
+
     public static double getValidDouble(Scanner sc) {
 
         double userAnswer = 0;
         while (userAnswer <= 0) {
             if (sc.hasNextDouble()) {
                 userAnswer = sc.nextDouble();
-
             } else {
                 System.out.println("Vul een geldig input in alstublieft.");
                 sc.nextLine();

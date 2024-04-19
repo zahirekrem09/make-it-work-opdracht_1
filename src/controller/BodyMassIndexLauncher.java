@@ -1,13 +1,13 @@
+
+
+package controller;
+
+import java.util.Scanner;
 /**
  * @author Zahir Ekrem SARITEKE
  * @project BodyMassIndex  Calculator
  * @created 15 Nisan Pazartesi 2024 - 20:55
  */
-
-package controller;
-
-import java.util.Scanner;
-
 public class BodyMassIndexLauncher {
 
     protected static final String LENGTH_MSG = "Geef je lengte in centimeters:";
@@ -80,23 +80,23 @@ public class BodyMassIndexLauncher {
 
     /**
      * Determines the body mass index category based on the given body mass index.
+     *      tot 18,5 Ondergewicht
+     *      * 18,5 – 25,0 Gezond gewicht
+     *      *  25,0 – 30,0 Overgewicht
+     *      *  meer dan 30,0 Obesitas
      *
      * @param bodyMassIndex the body mass index to be evaluated
      * @return   the body mass index category
      *
-     * tot 18,5 Ondergewicht
-     * 18,5 – 25,0 Gezond gewicht
-     *  25,0 – 30,0 Overgewicht
-     *  meer dan 30,0 Obesitas
      */
     public static String controllerBodyMassCategory(double bodyMassIndex) {
 
-        if (bodyMassIndex < 18.5) {
+        if (bodyMassIndex <= 18.5) {
             return "Ondergewicht";
 
-        } else if (bodyMassIndex >= 18.5 && bodyMassIndex < 25.0) {
+        } else if (bodyMassIndex > 18.5 && bodyMassIndex <= 25.0) {
             return "Gezond gewicht";
-        } else if (bodyMassIndex >= 25.0 && bodyMassIndex < 30.0) {
+        } else if (bodyMassIndex > 25.0 && bodyMassIndex <= 30.0) {
             return "Overgewicht";
         }
         return "Obesitas";
@@ -112,7 +112,7 @@ public class BodyMassIndexLauncher {
         int length = getValidHeight(sc);
         double weight = getValidWeight(sc);
         double bodyMassIndex = calculateBMI(weight, length / 100.0);
-        System.out.printf((LAST_MSG) + "%n", bodyMassIndex, controllerBodyMassCategory(bodyMassIndex));
+        System.out.printf((LAST_MSG) + "%n", bodyMassIndex, controllerBodyMassCategory(bodyMassIndex).toLowerCase());
         sc.close();
     }
 }
